@@ -6,7 +6,7 @@ An interactive web application for visualizing hierarchical clustering algorithm
 
 **Repository**: [https://github.com/thokasanjayteja014-star/DHV-Project](https://github.com/thokasanjayteja014-star/DHV-Project)
 
-![Project Banner](https://share.google/images/x1N7oHmOusSAaRwqV)
+![Project Banner](https://raw.githubusercontent.com/thokasanjayteja014-star/DHV-Project/main/screenshots/Project%20Image.png)
 
 ## 📋 Table of Contents
 
