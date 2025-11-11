@@ -6,7 +6,7 @@ An interactive web application for visualizing hierarchical clustering algorithm
 
 **Repository**: [https://github.com/thokasanjayteja014-star/DHV-Project](https://github.com/thokasanjayteja014-star/DHV-Project)
 
-![Project Banner](https://img.shields.io/badge/DHV--Project-Interactive%20Hierarchical%20Clustering-4F46E5?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSI4IiBjeT0iOCIgcj0iMiIgZmlsbD0id2hpdGUiLz48Y2lyY2xlIGN4PSIyNCIgY3k9IjgiIHI9IjIiIGZpbGw9IndoaXRlIi8+PGNpcmNsZSBjeD0iMTYiIGN5PSIyNCIgcj0iMiIgZmlsbD0id2hpdGUiLz48cGF0aCBkPSJNIDggMTAgTCAxNiAyMiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+PHBhdGggZD0iTSAyNCAxMCBMIDE2IDIyIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz48L3N2Zz4=)
+![Project Banner](https://share.google/images/x1N7oHmOusSAaRwqV)
 
 ## 📋 Table of Contents
 
