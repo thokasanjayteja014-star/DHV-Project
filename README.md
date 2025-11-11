@@ -1,10 +1,10 @@
 # Interactive Hierarchical Clustering Visualization
 
-[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue?style=flat-square&logo=github)](https://github.com/Dharmikgalla/DHV-final)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue?style=flat-square&logo=github)](https://github.com/thokasanjayteja014-star/DHV-Project)
 
 An interactive web application for visualizing hierarchical clustering algorithms with real-time dendrograms and scatter plots. This educational tool helps users understand clustering concepts through hands-on visualization and step-by-step animations.
 
-**Repository**: [https://github.com/Dharmikgalla/DHV-final](https://github.com/Dharmikgalla/DHV-final)
+**Repository**: [https://github.com/thokasanjayteja014-star/DHV-Project](https://github.com/thokasanjayteja014-star/DHV-Project)
 
 ![Project Banner](https://via.placeholder.com/1200x400/4F46E5/FFFFFF?text=Interactive+Hierarchical+Clustering+Visualization)
 
@@ -148,7 +148,7 @@ This application provides an intuitive way to understand hierarchical clustering
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Dharmikgalla/DHV-final.git
+   git clone https://github.com/thokasanjayteja014-star/DHV-Project
    cd DHV-final
    ```
 
@@ -204,7 +204,7 @@ npm start
 ## 📁 Project Structure
 
 ```
-DHV-final/
+DHV-Project/
 ├── app/
 │   ├── api/
 │   │   └── cluster/
@@ -245,7 +245,7 @@ DHV-final/
 ├── docs/                         # Documentation files
 │   ├── README.md
 │   ├── srt-template.srt
-│   └── voiceover-script.md
+│   
 ├── public/                       # Static assets
 │   └── clustering-explained-simply.mp4  # Educational video
 ├── shared/
@@ -480,12 +480,12 @@ For issues and questions:
 
 1. Check the documentation above
 2. Review the code comments
-3. Open an issue in the [repository](https://github.com/Dharmikgalla/DHV-final/issues)
+3. Open an issue in the [repository](https://github.com/thokasanjayteja014-star/DHV-Project/issues)
 4. Check existing issues for solutions
 
 ## 🔗 Links
 
-- **Repository**: [GitHub - DHV-final](https://github.com/Dharmikgalla/DHV-final)
+- **Repository**: [GitHub - DHV-Project](https://github.com/thokasanjayteja014-star/DHV-Project)
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 - [shadcn/ui Documentation](https://ui.shadcn.com/)
