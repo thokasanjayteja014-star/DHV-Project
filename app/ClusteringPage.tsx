@@ -16,7 +16,7 @@ import { Loader2, Layers, MousePointer2, ArrowLeft, Home } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ClusteringPage() {
-  const [dataset, setDataset] = useState<'medical' | 'crime' | 'customer'>('medical');
+  const [dataset, setDataset] = useState<'medical' | 'crime' | 'customer'>('crime');
   const [algorithm, setAlgorithm] = useState<'agglomerative' | 'divisive'>('agglomerative');
   const [xAxis, setXAxis] = useState<string>('');
   const [yAxis, setYAxis] = useState<string>('');
@@ -68,9 +68,19 @@ export default function ClusteringPage() {
       
       if (layout === 'side-by-side') {
         // Match scatter plot height for side-by-side alignment
-        const scatterPlotHeight = Math.max(500, Math.min(availableHeight, window.innerWidth * 0.48 * 0.9));
+        // Scatter plot uses: Math.max(550, Math.min(availableHeight, containerWidth * 0.95))
+        const containerWidth = window.innerWidth * 0.48;
+        const scatterPlotHeight = Math.max(550, Math.min(availableHeight, containerWidth * 0.95));
+        
+        // Reduce dendrogram height by removing extra padding - use tighter spacing
+        // Reduce required height calculation by using less padding
+        const reducedRequiredHeight = dataPoints.length > 0 
+          ? (dataPoints.length - 1) * 45 + 60 // Reduced spacing (45px instead of 50px) and less padding (60px instead of 100px)
+          : 400;
+        
+        // Use the scatter plot height but ensure minimum required height for labels
         const calculatedHeight = Math.max(
-          Math.max(400, requiredHeight),
+          Math.max(400, reducedRequiredHeight),
           scatterPlotHeight
         );
         setDendrogramHeight(calculatedHeight);
@@ -668,7 +678,7 @@ export default function ClusteringPage() {
 
                 {/* Dendrogram Tree Block */}
                 <div 
-                  className="w-full bg-card rounded-xl shadow-md border border-border/50 transition-all hover:shadow-lg"
+                  className="w-full bg-card rounded-xl shadow-md border border-border/50 transition-all hover:shadow-lg relative"
                   style={{ 
                     height: dendrogramHeight + 'px',
                     minHeight: dendrogramHeight + 'px'
@@ -693,6 +703,35 @@ export default function ClusteringPage() {
                     totalSteps={totalSteps}
                     clusteringSteps={clusteringSteps}
                   />
+                  
+                  {/* Cut Line Control Info - Right Side Overlay (Side-by-side layout only) */}
+                  <div className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-background/95 backdrop-blur-sm rounded-lg shadow-lg border border-border/50 p-3 min-w-[200px] z-10">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-destructive/20 to-destructive/10 flex items-center justify-center border border-destructive/20">
+                        <svg className="w-4 h-4 text-destructive" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-sm font-bold text-foreground">Cut Line Control</h3>
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
+                      Drag on dendrogram to adjust cut line position
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between bg-muted/50 rounded-md px-2.5 py-1.5 border border-border/50">
+                        <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Distance:</span>
+                        <span className="text-sm font-bold text-destructive">
+                          {(cutLine !== undefined ? cutLine : (dendrogramTree?.height || 0) * 0.6).toFixed(2)}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between bg-muted/50 rounded-md px-2.5 py-1.5 border border-border/50">
+                        <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Clusters:</span>
+                        <span className="text-sm font-bold text-primary">
+                          {clusters.length || 'N/A'}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -804,7 +843,8 @@ export default function ClusteringPage() {
           </div>
         )}
 
-        {/* Separate Cut Line Information Block */}
+        {/* Separate Cut Line Information Block - Only show for top-bottom layout */}
+        {layout === 'top-bottom' && (
         <div className="w-full bg-gradient-to-r from-card via-card to-primary/5 rounded-xl shadow-md border border-border/50 p-4 backdrop-blur-sm transition-all hover:shadow-lg">
               <div className="flex items-center gap-5">
                 <div className="flex-shrink-0">
@@ -836,6 +876,7 @@ export default function ClusteringPage() {
                 </div>
               </div>
             </div>
+        )}
       </div>
     </div>
   );

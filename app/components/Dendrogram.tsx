@@ -38,7 +38,7 @@ export function Dendrogram({
   const [dimensions, setDimensions] = useState({ width: 400, height: 600 });
   const [isDragging, setIsDragging] = useState(false);
 
-  const padding = { top: 40, right: 30, bottom: 50, left: 120 };
+  const padding = { top: 35, right: 30, bottom: 45, left: 120 }; // Reduced top and bottom padding to save space
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -58,11 +58,11 @@ export function Dendrogram({
         const availableHeight = rect.height - paddingTop - paddingBottom;
         
         // Calculate required height based on number of labels
-        // Minimum spacing: 50px per label to ensure no overlap
-        const minSpacing = 50;
+        // Reduced spacing for side-by-side layout to save vertical space
+        const minSpacing = 45; // Reduced from 50px to 45px
         const numLabels = labels.length;
         const requiredHeight = numLabels > 0 
-          ? (numLabels - 1) * minSpacing + padding.top + padding.bottom + 40 // Extra buffer for safety
+          ? (numLabels - 1) * minSpacing + padding.top + padding.bottom + 30 // Reduced buffer from 40px to 30px
           : 400;
         
         // Use the actual container width - no forced minimum to prevent horizontal scrolling
@@ -185,13 +185,17 @@ export function Dendrogram({
       
       // Compress the scaling to fit within available width
       // Use linear compression to reduce horizontal line length while maintaining proportions
-      const compressionFactor = 0.65; // Reduce horizontal length by 35% to fit better
+      // For side-by-side layout: dendrogram uses 60% of space, cut control overlay uses 40%
+      const compressionFactor = 0.85; // Increased to allow dendrogram lines to use most of the 60% space
       const normalizedHeight = height / maxHeight;
-      // Apply linear compression
-      const compressedValue = normalizedHeight * availableWidth * compressionFactor;
+      // Reserve 40% of available width for cut control overlay, dendrogram uses 60%
+      const dendrogramWidthRatio = 0.6;
+      const effectiveWidth = availableWidth * dendrogramWidthRatio;
+      // Apply linear compression - lines will use up to 85% of the effective width (60% of total)
+      const compressedValue = normalizedHeight * effectiveWidth * compressionFactor;
       const xPos = padding.left + compressedValue;
       // Clamp to ensure it stays within bounds
-      return Math.max(padding.left, Math.min(padding.left + availableWidth, xPos));
+      return Math.max(padding.left, Math.min(padding.left + effectiveWidth, xPos));
     };
 
     // Draw leaf nodes and their horizontal lines
@@ -358,15 +362,32 @@ export function Dendrogram({
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect) return;
     
+    // Mouse coordinates are in CSS pixels, which match dimensions.width
     const x = e.clientX - rect.left;
-    const maxHeight = getMaxHeight(tree);
-    const scaleX = (height: number) => {
-      return padding.left + ((height / (maxHeight || 1)) * (dimensions.width - padding.left - padding.right));
-    };
     
-    // Convert mouse X to height value
-    const height = ((x - padding.left) / (dimensions.width - padding.left - padding.right)) * maxHeight;
-    onCutLineChange(Math.max(0, Math.min(maxHeight, height)));
+    const maxHeight = getMaxHeight(tree);
+    if (maxHeight === 0) return;
+    
+    // Use the same scaleX logic as drawing - with compression and reserved space
+    const availableWidth = dimensions.width - padding.left - padding.right;
+    const compressionFactor = 0.85;
+    const dendrogramWidthRatio = 0.6;
+    const effectiveWidth = availableWidth * dendrogramWidthRatio;
+    
+    // Inverse of scaleX: convert pixel X position back to height value
+    // scaleX: xPos = padding.left + (normalizedHeight * effectiveWidth * compressionFactor)
+    // So: normalizedHeight = (xPos - padding.left) / (effectiveWidth * compressionFactor)
+    const relativeX = x - padding.left;
+    if (relativeX < 0) {
+      onCutLineChange(0);
+    } else if (relativeX > effectiveWidth * compressionFactor) {
+      onCutLineChange(maxHeight);
+    } else {
+      const normalizedHeight = relativeX / (effectiveWidth * compressionFactor);
+      const height = normalizedHeight * maxHeight;
+      onCutLineChange(Math.max(0, Math.min(maxHeight, height)));
+    }
+    
     setIsDragging(true);
   };
 
@@ -376,10 +397,29 @@ export function Dendrogram({
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect) return;
     
+    // Mouse coordinates are in CSS pixels, which match dimensions.width
     const x = e.clientX - rect.left;
+    
     const maxHeight = getMaxHeight(tree);
-    const height = ((x - padding.left) / (dimensions.width - padding.left - padding.right)) * maxHeight;
-    onCutLineChange(Math.max(0, Math.min(maxHeight, height)));
+    if (maxHeight === 0) return;
+    
+    // Use the same scaleX logic as drawing - with compression and reserved space
+    const availableWidth = dimensions.width - padding.left - padding.right;
+    const compressionFactor = 0.85;
+    const dendrogramWidthRatio = 0.6;
+    const effectiveWidth = availableWidth * dendrogramWidthRatio;
+    
+    // Inverse of scaleX: convert pixel X position back to height value
+    const relativeX = x - padding.left;
+    if (relativeX < 0) {
+      onCutLineChange(0);
+    } else if (relativeX > effectiveWidth * compressionFactor) {
+      onCutLineChange(maxHeight);
+    } else {
+      const normalizedHeight = relativeX / (effectiveWidth * compressionFactor);
+      const height = normalizedHeight * maxHeight;
+      onCutLineChange(Math.max(0, Math.min(maxHeight, height)));
+    }
   };
 
   const handleMouseUp = () => {
@@ -396,11 +436,10 @@ export function Dendrogram({
 
   return (
     <div ref={containerRef} className="w-full h-full flex flex-col">
-      <div className="px-6 py-4 border-b border-border flex-shrink-0 bg-muted/30">
+      <div className="px-6 py-1.5 border-b border-border flex-shrink-0 bg-muted/30">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-lg font-semibold">Dendrogram Tree</h3>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-sm text-muted-foreground">
               Step {currentStep} of {totalSteps} - Progressive clustering visualization
             </p>
           </div>

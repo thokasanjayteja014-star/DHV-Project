@@ -64,9 +64,9 @@ export function ScatterPlot({
         // Calculate height based on viewport to ensure graph fits in single screen
         // Use viewport height minus header/controls (approximately 300px for other content)
         const availableHeight = window.innerHeight - 300;
-        // Use square-ish aspect ratio or available height, whichever is smaller
+        // Use more of the available height for better alignment (increased from 0.9 to 0.95)
         // Ensure minimum height for visibility
-        const calculatedHeight = Math.max(500, Math.min(availableHeight, containerWidth * 0.9));
+        const calculatedHeight = Math.max(550, Math.min(availableHeight, containerWidth * 0.95));
         setDimensions({ width: containerWidth, height: calculatedHeight });
       }
     };
@@ -591,28 +591,19 @@ export function ScatterPlot({
             
             return (
               <g key="story-text" transform={`translate(${textX}, ${textY})`}>
-                {/* Simple background for readability */}
-                <rect
-                  x="-200"
-                  y="-20"
-                  width="400"
-                  height="40"
-                  rx="4"
-                  fill="hsl(var(--background))"
-                  fillOpacity="0.9"
-                />
-                {/* Simple story text */}
-                <foreignObject x="-195" y="-18" width="390" height="36">
+                {/* Plain story text without background */}
+                <foreignObject x="-250" y="-15" width="500" height="40">
                   <div 
                     className="text-center"
                     style={{
-                      fontSize: '14px',
-                      fontWeight: '400',
-                      lineHeight: '1.4',
+                      fontSize: '13px',
+                      fontWeight: '500',
+                      lineHeight: '1.5',
                       color: 'hsl(var(--foreground))',
                       fontFamily: 'Inter, system-ui, sans-serif',
                       wordWrap: 'break-word',
                       overflowWrap: 'break-word',
+                      whiteSpace: 'normal',
                     }}
                   >
                     {storyText}

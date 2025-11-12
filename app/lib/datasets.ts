@@ -36,27 +36,27 @@ export const medicalConfig: DatasetConfig = {
   },
   getStoryStep: (step: number, algorithm: 'agglomerative' | 'divisive') => {
     const agglomerativeStories = [
-      "All patients arrive at the hospital with their unique symptoms and medical readings.",
-      "The doctor examines each patient's vitals separately — every patient stands alone.",
-      "Now, the doctor compares medical profiles to find two patients with the most similar conditions.",
-      "Those two patients are grouped together for similar treatment and observation.",
-      "The doctor reassesses all remaining patients and groups the next closest pair based on vital similarity.",
-      "Gradually, small patient groups start merging into larger health clusters.",
-      "Soon, clusters represent different medical condition types — viral infection, normal, and metabolic risk.",
-      "The merging continues until all patients are connected under one large medical network called mixed symptoms cluster",
-      "The dendrogram tree shows how similar patients join together step by step.",
-      "Finally, the doctor 'cuts' the tree to focus on meaningful clusters of patients requiring similar care."
+      "All patients arrive with unique symptoms and medical readings.",
+      "Each patient is examined separately — every patient stands alone.",
+      "Doctor compares profiles to find two patients with most similar conditions.",
+      "Two similar patients are grouped together for similar treatment.",
+      "Next closest pair of patients are grouped based on vital similarity.",
+      "Small patient groups start merging into larger health clusters.",
+      "Clusters represent different condition types — viral, normal, and metabolic risk.",
+      "Merging continues until all patients connect into one medical network.",
+      "Dendrogram shows how similar patients join together step by step.",
+      "Doctor cuts the tree to focus on meaningful clusters requiring similar care."
     ];
     
     const divisiveStories = [
-      "The hospital starts with all patients in one large group — everyone under initial observation.",
-      "Doctors notice some patients have vastly different vitals, so they split the group into two — healthy and concerning.",
-      "They focus on the 'concerning' group to find further differences in blood pressure and sugar levels.",
-      "That group is again divided into subgroups — such as high-sugar vs high-fever patients.",
+      "Hospital starts with all patients in one large group under observation.",
+      "Doctors split the group into two — healthy and concerning patients.",
+      "Focus on 'concerning' group to find differences in blood pressure and sugar.",
+      "Group divided into subgroups — high-sugar vs high-fever patients.",
       "Each split reveals clearer distinctions among patient conditions.",
-      "Doctors keep dividing until every patient has their own distinct health profile.",
-      "The dendrogram now represents this top-down diagnosis process.",
-      "The doctor draws a line through it to identify critical clusters that need special care."
+      "Doctors keep dividing until every patient has distinct health profile.",
+      "Dendrogram represents this top-down diagnosis process.",
+      "Doctor draws a line to identify critical clusters needing special care."
     ];
     
     return algorithm === 'agglomerative' 
@@ -98,26 +98,26 @@ export const crimeConfig: DatasetConfig = {
   getStoryStep: (step: number, algorithm: 'agglomerative' | 'divisive') => {
     const agglomerativeStories = [
       "Every crime incident occurs independently across the city.",
-      "Investigators treat each crime as a separate case at first.",
-      "They analyze all cases to find two incidents that are geographically and behaviorally similar.",
-      "Those two crime scenes are linked as potentially related cases.",
-      "The investigation then finds the next closest pair of similar crimes.",
-      "Gradually, clusters of related crimes start forming — theft rings, assault zones, or fraud networks.",
-      "The city map now begins to reveal crime hotspots.",
-      "Eventually, all incidents connect into one large citywide crime map.",
-      "The dendrogram displays how small cases grew into major crime clusters.",
-      "Police cut the dendrogram to isolate specific regional crime patterns for focused investigation."
+      "Investigators treat each crime as a separate case initially.",
+      "Analyze cases to find two incidents that are geographically and behaviorally similar.",
+      "Two crime scenes are linked as potentially related cases.",
+      "Investigation finds the next closest pair of similar crimes.",
+      "Clusters of related crimes form — theft rings, assault zones, or fraud networks.",
+      "City map begins to reveal crime hotspots.",
+      "All incidents connect into one large citywide crime map.",
+      "Dendrogram displays how small cases grew into major crime clusters.",
+      "Police cut the dendrogram to isolate specific regional crime patterns."
     ];
     
     const divisiveStories = [
-      "At first, the police view all city crimes as one big dataset.",
-      "They spot major differences — violent vs non-violent crimes — and split them apart.",
-      "Within violent crimes, they separate robbery, assault, and murder cases.",
-      "Within non-violent crimes, they split fraud and theft groups.",
+      "Police view all city crimes as one big dataset initially.",
+      "Spot major differences — violent vs non-violent crimes — and split them apart.",
+      "Within violent crimes, separate robbery, assault, and murder cases.",
+      "Within non-violent crimes, split fraud and theft groups.",
       "Each split brings more clarity to the crime network.",
-      "Eventually, every incident is isolated with its own crime type and location.",
-      "The dendrogram now tells a story from citywide crimes to specific cases.",
-      "By cutting it, investigators focus on actionable clusters like theft hotspots or fraud centers."
+      "Every incident is isolated with its own crime type and location.",
+      "Dendrogram tells a story from citywide crimes to specific cases.",
+      "By cutting it, investigators focus on actionable clusters like theft hotspots."
     ];
     
     return algorithm === 'agglomerative' 
@@ -161,27 +161,27 @@ export const customerConfig: DatasetConfig = {
   },
   getStoryStep: (step: number, algorithm: 'agglomerative' | 'divisive') => {
     const agglomerativeStories = [
-      "Each customer walks into the store with unique preferences and spending habits.",
-      "Initially, the marketing team views every customer as a separate profile.",
-      "They compare customers to find two with the most similar income and spending behavior.",
-      "These two customers are grouped into a small segment for targeted offers.",
-      "Next, similar pairs of customers start merging into larger segments.",
-      "Gradually, clear patterns emerge — budget buyers, luxury shoppers, and loyal customers.",
-      "Clusters now represent well-defined customer groups.",
-      "All profiles eventually combine into a complete customer network.",
-      "The dendrogram shows how unique buyers merge into audience segments.",
-      "Marketers cut the tree to focus on the most valuable customer groups."
+      "Each customer has unique preferences and spending habits.",
+      "Marketing team views every customer as a separate profile initially.",
+      "Compare customers to find two with most similar income and spending behavior.",
+      "Two customers grouped into a small segment for targeted offers.",
+      "Similar pairs of customers start merging into larger segments.",
+      "Clear patterns emerge — budget buyers, luxury shoppers, and loyal customers.",
+      "Clusters represent well-defined customer groups.",
+      "All profiles combine into a complete customer network.",
+      "Dendrogram shows how unique buyers merge into audience segments.",
+      "Marketers cut the tree to focus on most valuable customer groups."
     ];
     
     const divisiveStories = [
-      "The company begins with all customers in one large group.",
-      "They first split them into two — low-spending vs high-spending customers.",
-      "They further divide each group based on loyalty and income.",
-      "The segmentation continues until each buyer profile is unique.",
+      "Company begins with all customers in one large group.",
+      "First split into two — low-spending vs high-spending customers.",
+      "Further divide each group based on loyalty and income.",
+      "Segmentation continues until each buyer profile is unique.",
       "Each new split uncovers deeper behavioral differences.",
-      "Soon, patterns like 'occasional buyers' or 'premium shoppers' emerge.",
-      "The dendrogram visually narrates this top-down segmentation journey.",
-      "The marketing team cuts it at optimal depth to target profitable segments."
+      "Patterns like 'occasional buyers' or 'premium shoppers' emerge.",
+      "Dendrogram visually narrates this top-down segmentation journey.",
+      "Marketing team cuts it at optimal depth to target profitable segments."
     ];
     
     return algorithm === 'agglomerative' 

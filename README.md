@@ -6,7 +6,7 @@ An interactive web application for visualizing hierarchical clustering algorithm
 
 **Repository**: [https://github.com/thokasanjayteja014-star/DHV-Project](https://github.com/thokasanjayteja014-star/DHV-Project)
 
-![Project Banner](https://raw.githubusercontent.com/thokasanjayteja014-star/DHV-Project/main/screenshots/project-banner.png)
+![Project Banner](https://via.placeholder.com/1200x400/4F46E5/FFFFFF?text=Interactive+Hierarchical+Clustering+Visualization)
 
 ## 📋 Table of Contents
 
@@ -38,10 +38,13 @@ This application provides an intuitive way to understand hierarchical clustering
 
 ### 🎨 Interactive Visualizations
 
-- **Dendrogram Tree**: Hierarchical tree structure showing cluster relationships with adjustable cut line
-- **Scatter Plot**: 2D visualization of data points with cluster highlighting and unique color coding
-- **Layout Options**: Switch between side-by-side and top-bottom layouts
+- **Dendrogram Tree**: Hierarchical tree structure showing cluster relationships with interactive cut line. All data points clearly visible without overlap. Click and drag directly on the dendrogram to adjust the cut line position
+- **Scatter Plot**: 2D visualization of data points with unique color coding for individual points and cluster colors for grouped points. Story narrations appear as plain text during clustering steps
+- **Layout Options**: 
+  - **Side-by-side**: Scatter plot (left) and dendrogram (right) with integrated cut control overlay. Dendrogram uses 60% horizontal space, overlay uses 40%
+  - **Top-bottom**: Scatter plot on top, dendrogram below with separate cut control panel
 - **Dynamic Updates**: Real-time recalculation on parameter changes
+- **Perfect Alignment**: Both visualizations are perfectly aligned in side-by-side layout with optimized vertical spacing
 
 ### 🔬 Clustering Algorithms
 
@@ -56,10 +59,10 @@ This application provides an intuitive way to understand hierarchical clustering
    - Purpose: Identify health risk groups and patient clusters
    - Cluster Types: Normal/Stable, Mild Viral Infection, Metabolic Risk, Mixed Symptoms
 
-2. **Crime Sites Dataset**
+2. **Crime Sites Dataset** (Default)
    - Features: Latitude, Longitude, Severity Level
    - Purpose: Geographic crime pattern analysis
-   - Cluster Types: Geographic crime zones with severity levels
+   - Cluster Types: Geographic crime zones with unique cluster colors (not severity-based)
 
 3. **Customer Segmentation Dataset**
    - Features: Age, Annual Income, Spending Score, Loyalty Years
@@ -68,19 +71,22 @@ This application provides an intuitive way to understand hierarchical clustering
 
 ### 🎓 Educational Features
 
-- **Video Explanation**: Animated video explaining hierarchical clustering in simple terms
-- **Real-Life Examples**: Six practical examples of clustering applications
-- **Step-by-Step Narrations**: Contextual explanations for each clustering step
-- **Interactive Tooltips**: Hover over points and clusters for detailed information
+- **Video Explanation**: Animated video explaining hierarchical clustering in simple, non-technical terms. Click to watch in a modal
+- **Real-Life Examples**: Six practical examples of clustering applications with descriptions
+- **Step-by-Step Narrations**: Concise 1-2 line contextual explanations for each clustering step, displayed as plain text on the scatter plot
+- **Interactive Tooltips**: Hover over points or clusters to see detailed information
 
 ### 🎛️ Interactive Controls
 
-- **Dataset Selection**: Switch between different datasets
-- **Algorithm Selection**: Choose between Agglomerative and Divisive clustering
+- **Dataset Selection**: Switch between different datasets (Crime Sites is the default)
+- **Algorithm Selection**: Choose between Agglomerative (bottom-up) and Divisive (top-down) clustering
 - **Axis Selection**: Customize X and Y axes for different data views
-- **Playback Controls**: Step forward/backward through clustering process
-- **Cut Line Control**: Adjust cluster count dynamically
-- **Layout Toggle**: Switch between side-by-side and top-bottom views
+- **Playback Controls**: Step forward/backward through clustering process with progress indicators
+- **Cut Line Control**: 
+  - **Side-by-side layout**: Integrated overlay on the right side of dendrogram showing distance and cluster count
+  - **Top-bottom layout**: Separate control panel below the dendrogram
+  - Click and drag directly on the dendrogram - the cut line appears exactly where you click
+- **Layout Toggle**: Switch between side-by-side and top-bottom views with optimized spacing
 
 ## 📸 Screenshots
 
@@ -124,7 +130,7 @@ This application provides an intuitive way to understand hierarchical clustering
 
 ---
 
-**Note**: Please add your actual screenshots to the `screenshots/` directory. The images above are placeholders.
+
 
 ## 🚀 Tech Stack
 
@@ -148,7 +154,7 @@ This application provides an intuitive way to understand hierarchical clustering
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/thokasanjayteja014-star/DHV-Project
+   git clone https://github.com/thokasanjayteja014-star/DHV-Project.git
    cd DHV-Project
    ```
 
@@ -180,25 +186,29 @@ npm start
 ### Getting Started
 
 1. **Landing Page**: Start at the home page to learn about hierarchical clustering
-2. **Watch Video**: Click "Watch Video Explanation" to view the educational video
+2. **Watch Video**: Click "Watch Video Explanation" to view the video
 3. **Explore Examples**: Scroll down to see real-life clustering applications
 4. **Start Visualization**: Click "Start Clustering Visualization" to begin
 
 ### Using the Clustering Visualization
 
-1. **Select Dataset**: Choose from Medical Patients, Crime Sites, or Customer Segmentation
-2. **Choose Algorithm**: Select Agglomerative or Divisive clustering
+1. **Select Dataset**: Choose from Medical Patients, Crime Sites (default), or Customer Segmentation
+2. **Choose Algorithm**: Select Agglomerative or Divisive clustering algorithm
 3. **Customize Axes**: Select different X and Y axes to view data from different perspectives
 4. **Step Through Process**: Use the progress dots or navigation buttons to step through clustering
-5. **Adjust Cut Line**: Drag the cut line in the dendrogram to change the number of clusters
+5. **Adjust Cut Line**: Click and drag on the dendrogram to adjust the cut line position - the line appears exactly where you click
 6. **Switch Layout**: Use the layout toggle to switch between side-by-side and top-bottom views
+   - **Side-by-side**: Scatter plot and dendrogram displayed horizontally with cut control overlay integrated
+   - **Top-bottom**: Scatter plot on top, dendrogram below with separate cut control panel
 7. **Add Points**: Click "Add Point" to add custom data points and see how they cluster
+8. **View Story Text**: Step-by-step story narrations appear on the scatter plot as plain text near clusters
 
 ### Understanding the Visualizations
 
-- **Scatter Plot**: Shows data points in 2D space. Points in the same cluster share the same color
-- **Dendrogram**: Tree structure showing how clusters merge. Height represents merge distance
-- **Cut Line**: Horizontal line in dendrogram. Points below the line are in the same cluster
+- **Scatter Plot**: Shows data points in 2D space with unique colors. Points in the same cluster share the cluster color. Story text appears as plain text near clusters during clustering steps
+- **Dendrogram**: Tree structure showing how clusters merge. Height represents merge distance. All data points are clearly visible without overlap
+- **Cut Line**: Click and drag directly on the dendrogram to adjust the cut line. The line appears exactly where you click, allowing precise control over cluster count
+- **Cut Control Overlay** (Side-by-side layout): Integrated control panel on the right side of dendrogram showing distance and cluster count
 - **Tooltips**: Hover over points or clusters to see detailed information
 
 ## 📁 Project Structure
@@ -247,7 +257,7 @@ DHV-Project/
 │   ├── srt-template.srt
 │   
 ├── public/                       # Static assets
-│   └── clustering-explained-simply.mp4  # Educational video
+│   └── clustering-explained-simply.mp4  # Explanation video
 ├── shared/
 │   └── schema.ts                 # TypeScript interfaces and types
 ├── .gitignore                    # Git ignore rules
@@ -495,4 +505,4 @@ For issues and questions:
 
 **Built with ❤️ using Next.js and Tailwind CSS**
 
-*Last updated: 2024*
+*Last updated: 2025*
